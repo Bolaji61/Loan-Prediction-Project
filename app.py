@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify, render_template
 import joblib
 
 app = Flask(__name__)
-model =joblib.load(open('model.pkl', 'rb'))
+model =joblib.load(open('results/model.pkl', 'rb'))
 
 @app.route('/')
 def home():
