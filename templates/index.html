@@ -12,22 +12,57 @@
 </head>
 
 <body style="background: #fff;">
- <div class="login">
+ <div class="form">
 	<h1>Loan Prediction</h1>
 
      <!-- Main Input For Receiving Query to our ML -->
     <form action="{{ url_for('predict')}}"method="post">
-    	<input type="text" name="Gender" placeholder="Gender" required="required" />
-        <input type="text" name="Married" placeholder="Married" required="required" />
-        <input type="text" name="Dependents" placeholder="Dependents" required="required" />
-        <input type="text" name="Education" placeholder="Education" required="required" />
-        <input type="text" name="Self Employed" placeholder="Self Employed" required="required" />
-        <input type="text" name="Applicant Income" placeholder="Applicant Income" required="required" />
-        <input type="text" name="Coapplicant Income" placeholder="Coapplicant Income" required="required" />
-        <input type="text" name="Loan Amount" placeholder="Loan Amount" required="required" />
-        <input type="text" name="Loan Amount Term" placeholder="Loan Amount Term" required="required" />
-        <input type="text" name="Credit History" placeholder="Credit History" required="required" />
-        <input type="text" name="Property Area" placeholder="Property Area" required="required" />
+        <input type="text" name="Applicant Income" placeholder="Applicant Income (N)" required="required" />
+        <input type="text" name="Coapplicant Income" placeholder="Coapplicant Income (N)" required="required" />
+        <input type="text" name="Loan Amount" placeholder="Loan Amount(N)" required="required" />
+        <input type="text" name="Loan Amount Term" placeholder="Loan Amount Term (in months)" required="required" />
+        <p>
+        <label>Gender</label> 
+             <select name = "Gender">
+               <option value = "Female">Female</option>
+               <option value = "Male">Male</option>
+             </select>
+        </p>
+        <label>Married</label>
+             <select name = "Married">
+               <option value = "Yes">Yes</option>
+               <option value = "No">No</option>
+             </select>
+        <label>Dependents</label>
+             <select name= 'Dependents'>
+               <option value = "0">0</option>
+               <option value = "1">1</option>
+               <option value = "2">2</option>
+               <option value = "3+">3+</option>
+             </select>
+        <label>Education</label>
+             <select name="Education">
+               <option value = "Graduate">Graduate</option>
+               <option value = "Not Graduate">Not Graduate</option>
+             </select>
+        <label>Self Employed</label>
+             <select name="Self Employed">
+               <option value = "Yes">Yes</option>
+               <option value = "No">No</option>
+             </select>
+        <label>Do you have a Credit History</label>
+             <select name="Credit History">
+               <option value = "Yes">Yes</option>
+               <option value = "No">No</option>
+             </select>
+        <label>Property Area</label>
+             <select name= "Property Area">
+               <option value = "Rural">Rural</option>
+               <option value = "Semiurban">Semiurban</option>
+               <option value = "Urban">Urban</option>
+             </select>
+               
+              
         
 
 
