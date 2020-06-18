@@ -19,7 +19,7 @@ def predict():
 
     #Convert corresponding categorical feature to numeric values as inputs for the model
     numeric_features =  [dictionary.get(item, item) for item in features] 
-
+    print(numeric_features)
     #convert array to float datatype
     numeric_features_float = [np.array(numeric_features).astype(np.float64)]
 
