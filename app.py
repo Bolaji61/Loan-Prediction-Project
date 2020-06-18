@@ -5,23 +5,34 @@ import joblib
 app = Flask(__name__)
 model =joblib.load(open('results/model.pkl', 'rb'))
 
+
 @app.route('/')
 def home():
     return render_template('index.html')
 
 @app.route('/predict',methods=['POST'])
 def predict():
-    int_features = [i for i in request.form.values()]
-    int_features = np.array(int_features).astype(np.float64)
-    final_features = [np.array(int_features)]
-    print(int_features)
-    prediction = model.predict(final_features)
+    features = [i for i in request.form.values()]
 
-    # output = round(prediction[0], 2)
+    dictionary = {'Female': 0, 'Male': 1, 'No': 0, 'Yes': 1, '0': 0, '1':1, '2':2, '3+':3, \
+            'Graduate' : 0, 'Not Graduate' : 1, 'Rural' : 0, 'Urban' : 1, 'Semiurban' : 2}
+
+    #Convert corresponding categorical feature to numeric values as inputs for the model
+    numeric_features =  [dictionary.get(item, item) for item in features] 
+
+    #convert array to float datatype
+    numeric_features_float = [np.array(numeric_features).astype(np.float64)]
+
+    #predict loan status
+    prediction = model.predict(numeric_features_float)
     output = prediction[0]
-    
+    if output == 'Y':
+        output = "Congratulations, your Loan application Status is Approved!"
+    else:
+        output = 'Sorry, your Loan application status is Rejected!'
 
-    return render_template('index.html', prediction_text='Loan Status is {}'.format(output))
+    return render_template('index.html', prediction_text=output)
+
 
 @app.route('/results',methods=['POST'])
 def results():
